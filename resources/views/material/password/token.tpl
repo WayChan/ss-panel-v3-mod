@@ -28,7 +28,7 @@
 											<div class="row">
 												<div class="col-md-10 col-md-push-1">
 													<label class="floating-label" for="password">密码</label>
-													<input class="form-control" id="password" type="text">
+													<input class="form-control" id="password" type="password">
 												</div>
 											</div>
 										</div>
@@ -37,7 +37,7 @@
 											<div class="row">
 												<div class="col-md-10 col-md-push-1">
 													<label class="floating-label" for="repasswd">重复密码</label>
-													<input class="form-control" id="repasswd" type="text">
+													<input class="form-control" id="repasswd" type="password">
 												</div>
 											</div>
 										</div>
@@ -89,9 +89,11 @@
                 },
                 success:function(data){
                     if(data.ret){
-						$("#result").modal();
+			$("#result").modal();
                         $("#msg").html(data.msg);
-                        window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
+                        $("#result_ok").unbind().bind("click",function(){
+      				window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
+			})
                     }else{
                         $("#result").modal();
                         $("#msg").html(data.msg);
